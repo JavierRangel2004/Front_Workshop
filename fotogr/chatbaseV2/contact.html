@@ -1,40 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-  <title>Contact - Photography Portfolio</title>
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1></h1>
-    <nav>
-      <ul class="navbar">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section id="contact" class="contacto">
-      <h2>Contact Me</h2>
-      <p>Si estás interesado en mi trabajo o deseas más información, no dudes en ponerte en contacto conmigo.</p>
-      <p>Email: inspecjrm@gmail.com</p>
-      <p>Teléfono: 55 8255 9042</p>
-      <p>Instagram: <a href="https://instagram.com/jrm_graphy">@jrm_graphy</a></p>
-      <form id="contactForm">
-        <label for="name">Your Name:</label><br>
-        <input type="text" id="name" name="name"><br>
-        <label for="email">Your Email:</label><br>
-        <input type="email" id="email" name="email"><br>
-        <input type="submit" value="Submit">
-      </form>
-    </section>
-  </main>
-  <div id="modal" class="modal">
-    <img id="modal-image">
-  </div>
-  
-  <script src="script.js"></script>
+    <header>
+      <nav>
+        <ul class="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+        <h1 style="text-align: center;">Contact Me</h1>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <p><a href=mailto:"inspecjrm@gmail.com">inspecjrm@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <p>+52 55 8255 9042</p>
+            </div>
+            <div class="contact-item">
+                <i class="fab fa-instagram"></i>
+                <p><a href="https://instagram.com/jrm_graphy">@jrm_graphy</a></p>
+            </div>
+        </div>
+    </main>
+    <footer>
+      &copy; JRM Photography 2023 | Todos los derechos reservados
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img id="modal-image">
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts.js"></script>
 </body>
 </html>
