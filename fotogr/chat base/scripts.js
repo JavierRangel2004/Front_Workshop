@@ -1,6 +1,6 @@
 // Replace these with the actual paths to your image files
 const portraitImages = ['Portrait (1).jpg', 'Portrait (2).jpg', 'Portrait (3).jpg', 'Portrait (4).jpg', 'Portrait (5).jpg', 'Portrait (6).jpg', 'Portrait (7).jpg', 'Portrait (8).jpg', 'Portrait (9).jpg', 'Portrait (10).jpg', 'Portrait (11).jpg', 'Portrait (12).jpg', 'Portrait (13).jpg', 'Portrait (14).jpg', 'Portrait (15).jpg', 'Portrait (16).jpg', 'Portrait (17).jpg', 'Portrait (18).jpg', 'Portrait (19).jpg', 'Portrait (20).jpg', 'Portrait (21).jpg', 'Portrait (22).jpg', 'Portrait (23).jpg', 'Portrait (24).jpg', 'Portrait (25).jpg'];
-const landscapeImages = ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'];
+const landscapeImages = ['landscape (1).jpg', 'landscape (2).jpg', 'landscape (3).jpg', 'landscape (4).jpg', 'landscape (5).jpg', 'landscape (6).jpg', 'landscape (7).jpg', 'landscape (8).jpg', 'landscape (9).jpg', 'landscape (10).jpg', 'landscape (11).jpg', 'landscape (12).jpg', 'landscape (13).jpg', 'landscape (14).jpg', 'landscape (15).jpg', 'landscape (16).jpg', 'landscape (17).jpg', 'landscape (18).jpg', 'landscape (19).jpg', 'landscape (20).jpg', 'landscape (21).jpg', 'landscape (22).jpg', 'landscape (23).jpg', 'landscape (24).jpg', 'landscape (25).jpg', 'landscape (26).jpg', 'landscape (27).jpg', 'landscape (28).jpg', 'landscape (29).jpg', 'landscape (30).jpg', 'landscape (31).jpg', 'landscape (32).jpg', 'landscape (33).jpg', 'landscape (34).jpg', 'landscape (35).jpg', 'landscape (36).jpg'];
 
 let portraitIndex = 0;
 let landscapeIndex = 0;
