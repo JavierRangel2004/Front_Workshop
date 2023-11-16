@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery - Photographer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- Include the same header as in index.html -->
+    <header class="bg-gray-800 text-white p-4">
+      <nav class="container mx-auto flex justify-between items-center">
+        <a href="index.html" class="font-bold text-xl">Photographer's Logo</a>
+        <ul class="flex space-x-4">
+          <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+          <li>
+            <a href="gallery.html" class="hover:text-gray-300">Gallery</a>
+          </li>
+          <li>
+            <a href="contact.html" class="hover:text-gray-300">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container mx-auto my-8 p-4">
+      <h1 class="text-4xl font-bold mb-6">Gallery</h1>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <!-- Gallery Section 1: Retratos -->
+        <a href="port.html" class="border rounded-lg p-4 hover:shadow-lg">
+          <img
+            src="path_to_retratos_image.jpg"
+            alt="Retratos"
+            class="w-full h-auto"
+          />
+          <h2 class="text-lg font-semibold text-center mt-2">Retratos</h2>
+        </a>
+        <!-- Gallery Section 2: Naturaleza -->
+        <a href="nature.html" class="border rounded-lg p-4 hover:shadow-lg">
+          <img
+            src="path_to_naturaleza_image.jpg"
+            alt="Naturaleza"
+            class="w-full h-auto"
+          />
+          <h2 class="text-lg font-semibold text-center mt-2">Naturaleza</h2>
+        </a>
+        <!-- Gallery Section 3: Creatividad -->
+        <a href="creativity.html" class="border rounded-lg p-4 hover:shadow-lg">
+          <img
+            src="path_to_creatividad_image.jpg"
+            alt="Creatividad"
+            class="w-full h-auto"
+          />
+          <h2 class="text-lg font-semibold text-center mt-2">Creatividad</h2>
+        </a>
+        <!-- Gallery Section 4: Ciudad -->
+        <a href="city.html" class="border rounded-lg p-4 hover:shadow-lg">
+          <img
+            src="path_to_ciudad_image.jpg"
+            alt="Ciudad"
+            class="w-full h-auto"
+          />
+          <h2 class="text-lg font-semibold text-center mt-2">Ciudad</h2>
+        </a>
+
+        <!-- Repeat for other categories -->
+      </div>
+    </main>
+
+    <!-- Include the same footer as in index.html -->
+
+    <footer class="bg-gray-700 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <img
+          src="/media/yo.jpg"
+          alt="Photographer"
+          class="w-16 h-16 rounded-full"
+        />
+        <div>
+          <a
+            href="https://www.instagram.com/jrm_graphy"
+            class="hover:text-gray-300"
+            >Instagram</a
+          >
+          <a href="mailto:inspecjrm@gmail.com" class="hover:text-gray-300"
+            >Email</a
+          >
+        </div>
+        <p>&copy; 2023 Photographer's Name</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Photography Portfolio</title>
+    <style>
+        
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <header class="bg-white shadow">
+      <nav class="container mx-auto px-6 py-3">
+        <div class="flex justify-between">
+          <div class="flex space-x-7">
+            <div>
+              <!-- Website Logo -->
+              <a href="#" class="flex items-center py-4 px-2">
+                <img
+                  src="media/logo.jpg"
+                  alt="Logo"
+                  class="h-10 w-10 mr-2 rounded"
+                  id="logo"
+                />
+              </a>
+            </div>
+            <!-- Primary Navbar items -->
+            <div class="hidden md:flex items-center space-x-1">
+              <a
+                href="index.html"
+                class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                >Home</a
+              >
+              <a
+                href="gallery.html"
+                class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                >Gallery</a
+              >
+              <a
+                href="contact.html"
+                class="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300"
+                >Contact</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section class="container mx-auto my-10 p-8 bg-white shadow-lg max-w-3xl">
+        <h1 class="text-3xl font-semibold leading-tight text-gray-800">
+          JRMGRAPHY
+        </h1>
+        <div class="mt-8">
+          <img
+            src="media/yo.jpg"
+            alt="Your image description"
+            class="rounded-full w-32 mx-auto mb-4"
+          />
+          <div class="text-center">
+            <h2 class="text-xl font-semibold">About Me</h2>
+            <p class="mt-4 text-gray-600">
+              Hello, I'm Javier Rangel, an amateur photographer based in the
+              vibrant city of Mexico City. Since 2018, I have been passionately
+              exploring the world of photography, immersing myself in the art of
+              capturing breathtaking portraits and exotic landscapes.
+            </p>
+            <!-- Additional paragraphs omitted for brevity -->
+          </div>
+        </div>
+      </section>
+      <h2 class="text-center text-2xl font-semibold my-10">
+        Check out my gallery:
+      </h2>
+      <section id="featured-photos" class="container mx-auto px-6">
+        <!-- Featured photos will be added here by JS -->
+      </section>
+      <div class="text-center my-10">
+        <a
+          href="gallery.html"
+          class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded"
+        >
+          View Gallery
+        </a>
+      </div>
+    </main>
+    <footer class="text-center py-4 bg-white text-gray-600">
+      &copy; JRM Photography 2023 | Todos los derechos reservados
+    </footer>
+    <div id="modal" class="modal">
+      <img id="modal-image" />
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
