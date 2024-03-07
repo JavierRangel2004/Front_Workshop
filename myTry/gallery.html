@@ -28,7 +28,8 @@
         /* Ensure images maintain a square aspect ratio */
         .img-square-wrapper {
             width: 100%;
-            padding-top: 100%; /* Equal width and height */
+            padding-top: 100%;
+            /* Equal width and height */
             position: relative;
         }
 
@@ -44,7 +45,197 @@
         }
 
         body {
-            padding-top: 5rem; /* Adjust based on the actual navbar height */
+            padding-top: 5rem;
+            /* Adjust based on the actual navbar height */
+        }
+
+        /* Importing Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        /* General Styles */
+        body,
+        html {
+            margin: 0;
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background Image Blur and Overlay */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            min-width: 100%;
+            min-height: 100%;
+            background-image: url('/media/land/Landscape (6).webp');
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            z-index: -1;
+
+            ::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: #262626;
+                /* Dark overlay for a more prominent foreground */
+                z-index: -1;
+            }
+        }
+
+        /* Content Styles */
+        .content {
+            z-index: 1;
+            position: relative;
+            padding-top: 100px;
+            color: #F2F2F2;
+            /* Light text color for contrast */
+        }
+
+        .aboutme {
+            background-color: #26262670;
+            border-radius: 10px;
+            /* Or any color you're using for the gray background */
+            padding-bottom: 50px;
+            /* Add some padding to ensure space between the text and the end of the section */
+        }
+
+
+
+
+        /* Header and Navigation Styling */
+        nav {
+            background: #174031be;
+            /* Slightly transparent black for a modern touch */
+            backdrop-filter: saturate(180%) blur(20px);
+            /* Frosted glass effect */
+
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            /* Bold font for the brand */
+            font-size: 1.5em;
+            color: #F2F2F2;
+            /* Bright accent color for branding */
+        }
+
+        /* Hover Effects */
+        .grow-on-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .grow-on-hover:hover {
+            transform: scale(1.05);
+            /* Subtle grow effect */
+        }
+
+        /* Scrollable Gallery */
+        #featured-photos {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+        }
+
+        .img-container {
+            flex: 0 0 auto;
+            padding: 4px;
+            border-radius: 10px;
+            /* Rounded corners for a modern look */
+            overflow: hidden;
+            /* Ensures the rounded corners are applied to images */
+        }
+
+        .img-fluid {
+            max-height: 200px;
+            transition: all 0.3s ease;
+            /* Smooth transition for hover effects */
+        }
+
+        /* Button Styling */
+
+        /*
+Colors:
+#174031 - Dark Green
+#2C7359 - Light Green
+#F2F2F2 - white
+#262626 - Dark gray
+#0D0D0D - Dark 
+*/
+        .btn-outline-light {
+            border-color: #2C7359;
+            /* Accent color for buttons */
+            background-color: #17403153;
+            color: #F2F2F2;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #F2F2F2;
+            /* Accent color on hover */
+            color: #2C7359;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #174031d2;
+            /* Consistent with nav style */
+            padding: 20px 0;
+            /* Padding for visual spacing */
+        }
+
+        /* Media Query Adjustments */
+        @media (min-width: 768px) {
+
+            /* Custom scrollbar hidden */
+            #featured-photos::-webkit-scrollbar {
+                display: none;
+            }
+
+            #featured-photos {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+
+        /* Modal Styling */
+        .modal-content {
+            background-color: transparent;
+            border: none;
+        }
+
+        .modal-dialog {
+            max-width: 95%;
+        }
+
+        #modal-image {
+            max-height: 80vh;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.7;
+        }
+
+        .btn-close-white {
+            filter: invert(1);
+            /* Ensure close button is visible */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1051;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        .title {
+            color: #262626;
         }
     </style>
 </head>
@@ -52,7 +243,7 @@
 <body>
     <header>
         <!-- place navbar here -->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark bg-opacity-75">
+        <nav class="navbar navbar-expand-lg  fixed-top ">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">JRMGraphy</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -137,7 +328,7 @@
             </div>
         </div>
     </main>
-    <footer class="text-center text-white fixed-bottom bg-dark">
+    <footer class="text-center text-white fixed-bottom">
         &copy; JRM Photography 2023 | All rights reserved
     </footer>
     <!-- Bootstrap JavaScript Libraries -->
@@ -150,4 +341,5 @@
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
