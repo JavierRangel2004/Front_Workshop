@@ -7,115 +7,9 @@
   <title>JRMGraphy Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Importing Google Fonts */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-
-    /* General Styles */
-    body,
-    html {
-      margin: 0;
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    /* Background Image Blur and Overlay */
-    .bg-image {
-      position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
-      background-image: url('/media/land/Landscape (6).webp');
-      background-size: cover;
-      background-position: center;
-      filter: blur(8px);
-      z-index: -1;
-
-      ::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #262626;
-        /* Dark overlay for a more prominent foreground */
-        z-index: -1;
-      }
-    }
-
-    /* Content Styles */
-    .content {
-      z-index: 1;
-      position: relative;
-      padding-top: 100px;
-      color: #F2F2F2;
-      /* Light text color for contrast */
-    }
-
-    .aboutme {
-      background-color: #26262670;
-      border-radius: 10px;
-      /* Or any color you're using for the gray background */
-      padding-bottom: 50px;
-      /* Add some padding to ensure space between the text and the end of the section */
-    }
-
-
-
-
-    /* Header and Navigation Styling */
-    nav {
-      background: #174031be;
-      /* Slightly transparent black for a modern touch */
-      backdrop-filter: saturate(180%) blur(20px);
-      /* Frosted glass effect */
-      
-    }
-
-    .navbar-brand {
-      font-weight: 700;
-      /* Bold font for the brand */
-      font-size: 1.5em;
-      color: #F2F2F2;
-      /* Bright accent color for branding */
-    }
-
-    /* Hover Effects */
-    .grow-on-hover {
-      transition: transform 0.3s ease;
-    }
-
-    .grow-on-hover:hover {
-      transform: scale(1.05);
-      /* Subtle grow effect */
-    }
-
-    /* Scrollable Gallery */
-    #featured-photos {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-    }
-
-    .img-container {
-      flex: 0 0 auto;
-      padding: 4px;
-      border-radius: 10px;
-      /* Rounded corners for a modern look */
-      overflow: hidden;
-      /* Ensures the rounded corners are applied to images */
-    }
-
-    .img-fluid {
-      max-height: 200px;
-      transition: all 0.3s ease;
-      /* Smooth transition for hover effects */
-    }
-
-    /* Button Styling */
-    
     /*
     Colors:
     #174031 - Dark Green
@@ -124,31 +18,46 @@
     #262626 - Dark gray
     #0D0D0D - Dark 
     */
-    .btn-outline-light {
-      border-color: #2C7359;
-      /* Accent color for buttons */
-      background-color: #17403153;
-      color: #F2F2F2;
-    }
 
-    .btn-outline-light:hover {
+    /*Global styles*/
+    body,
+    html {
+      margin: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+    /*Page specific styles*/
+    .bg-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
       background-color: #F2F2F2;
-      /* Accent color on hover */
-      color: #2C7359;
+      background-size: cover;
+      background-position: center;
+      filter: blur(8px);
+      z-index: -1;
     }
 
-    /* Footer Styling */
-    footer {
-      background: #174031d2;
-      /* Consistent with nav style */
-      padding: 20px 0;
-      /* Padding for visual spacing */
+    .aboutme {
+      border-radius: 10px;
+      padding-bottom: 50px;
     }
 
-    /* Media Query Adjustments */
+    .image-container-profile {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .img-fluid-profile {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+    }
+
     @media (min-width: 768px) {
 
-      /* Custom scrollbar hidden */
       #featured-photos::-webkit-scrollbar {
         display: none;
       }
@@ -157,9 +66,81 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
+      .image-container-profile {
+        height: 60vh;
+      }
+    }
+    /*Repeatible styles*/
+
+    nav {
+      background: #174031be;
+      backdrop-filter: saturate(180%) blur(10px);
     }
 
-    /* Modal Styling */
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5em;
+      color: #F2F2F2;
+    }
+
+    .content {
+      z-index: 1;
+      position: relative;
+      padding-top: 100px;
+      color: #174031;
+    }
+
+    .btn-outline-light {
+      border-color: #174031;
+      background-color: #2C7359;
+      color: #F2F2F2;
+    }
+
+    .btn-outline-light:hover {
+      background-color: #17403153;
+      color: #174031;
+    }
+
+    footer {
+      background: #174031;
+      padding: 20px 0;
+    }
+    /*image styles*/
+
+    .grow-on-hover {
+      transition: transform 0.3s ease;
+    }
+
+    .grow-on-hover:hover {
+      transform: scale(1.05);
+    }
+
+    .img-container {
+      flex: 0 0 auto;
+      padding: 4px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .img-fluid {
+      max-height: 200px;
+      transition: all 0.3s ease;
+    }
+
+    #featured-photos {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+
+    @media (max-width: 768px) {
+      .image-container {
+        height: auto;
+      }
+    }
+    /*modal styles*/
     .modal-content {
       background-color: transparent;
       border: none;
@@ -181,7 +162,6 @@
 
     .btn-close-white {
       filter: invert(1);
-      /* Ensure close button is visible */
     }
 
     .close-btn {
@@ -191,9 +171,6 @@
       z-index: 1051;
       font-size: 30px;
       color: #fff;
-    }
-    .title {
-      color: #262626;
     }
   </style>
 </head>
@@ -231,7 +208,7 @@
   </header>
 
   <div class="content container py-5">
-    <section class="text-center my-5 title">
+    <section class="text-center my-5">
       <h1 class="display-4">JRMGraphy</h1>
       <p class="lead">Your Moment, Our Lens</p>
     </section>
@@ -239,7 +216,8 @@
       <div class="container">
         <div class="row align-items-center">
           <div class="col-md-6 mb-3 mb-md-0">
-            <img src="/media/yo.jpg" alt="Your image description" class="img-fluid rounded shadow">
+            <img src="/media/yo.jpg" alt="Your image description"
+              class="img-fluid-profile image-container-profile rounded shadow">
           </div>
           <div class="col-md-6">
             <h2>About Me</h2>
@@ -265,9 +243,7 @@
         </div>
       </div>
     </section>
-    <!-- Gallery title -->
     <h2 class="text-center my-5">Check out my gallery:</h2>
-    <!-- Featured photos section -->
     <section id="featured-photos" class="d-flex overflow-auto">
       <!-- Featured photos will be dynamically added here -->
     </section>
@@ -285,7 +261,6 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="script.js"></script>
-  <!-- Image Modal -->
   <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content bg-transparent border-0">

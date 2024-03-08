@@ -2,22 +2,32 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Gallery - JRMGraphy</title>
-
-    <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        .category-img:hover {
+        body,
+        html {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            padding-top: 5rem;
+        }
+
+        .category-img:hover,
+        .img-fluid:hover {
             filter: brightness(65%);
         }
 
         .category-link {
             text-decoration: none;
-            color: black;
+            color: #174031;
         }
 
         .category-title {
@@ -25,11 +35,10 @@
             margin-top: 0.5rem;
         }
 
-        /* Ensure images maintain a square aspect ratio */
         .img-square-wrapper {
             width: 100%;
             padding-top: 100%;
-            /* Equal width and height */
+            /* 1:1 Aspect Ratio */
             position: relative;
         }
 
@@ -44,234 +53,74 @@
             object-fit: cover;
         }
 
-        body {
-            padding-top: 5rem;
-            /* Adjust based on the actual navbar height */
-        }
+nav {
+  background: #174031be;
+  backdrop-filter: saturate(180%) blur(10px);
 
-        /* Importing Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+}
 
-        /* General Styles */
-        body,
-        html {
-            margin: 0;
-            height: 100%;
-            font-family: 'Poppins', sans-serif;
-        }
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: #F2F2F2;
+}
 
-        /* Background Image Blur and Overlay */
-        .bg-image {
-            position: fixed;
-            top: 0;
-            left: 0;
-            min-width: 100%;
-            min-height: 100%;
-            background-image: url('/media/land/Landscape (6).webp');
-            background-size: cover;
-            background-position: center;
-            filter: blur(8px);
-            z-index: -1;
-
-            ::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: #262626;
-                /* Dark overlay for a more prominent foreground */
-                z-index: -1;
-            }
-        }
-
-        /* Content Styles */
-        .content {
-            z-index: 1;
-            position: relative;
-            padding-top: 100px;
-            color: #F2F2F2;
-            /* Light text color for contrast */
-        }
-
-        .aboutme {
-            background-color: #26262670;
-            border-radius: 10px;
-            /* Or any color you're using for the gray background */
-            padding-bottom: 50px;
-            /* Add some padding to ensure space between the text and the end of the section */
-        }
-
-
-
-
-        /* Header and Navigation Styling */
-        nav {
-            background: #174031be;
-            /* Slightly transparent black for a modern touch */
-            backdrop-filter: saturate(180%) blur(20px);
-            /* Frosted glass effect */
-
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            /* Bold font for the brand */
-            font-size: 1.5em;
-            color: #F2F2F2;
-            /* Bright accent color for branding */
-        }
-
-        /* Hover Effects */
         .grow-on-hover {
             transition: transform 0.3s ease;
         }
 
         .grow-on-hover:hover {
             transform: scale(1.05);
-            /* Subtle grow effect */
         }
 
-        /* Scrollable Gallery */
-        #featured-photos {
-            display: flex;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-        }
-
-        .img-container {
-            flex: 0 0 auto;
-            padding: 4px;
-            border-radius: 10px;
-            /* Rounded corners for a modern look */
-            overflow: hidden;
-            /* Ensures the rounded corners are applied to images */
-        }
-
-        .img-fluid {
-            max-height: 200px;
-            transition: all 0.3s ease;
-            /* Smooth transition for hover effects */
-        }
-
-        /* Button Styling */
-
-        /*
-Colors:
-#174031 - Dark Green
-#2C7359 - Light Green
-#F2F2F2 - white
-#262626 - Dark gray
-#0D0D0D - Dark 
-*/
-        .btn-outline-light {
-            border-color: #2C7359;
-            /* Accent color for buttons */
-            background-color: #17403153;
-            color: #F2F2F2;
-        }
-
-        .btn-outline-light:hover {
-            background-color: #F2F2F2;
-            /* Accent color on hover */
-            color: #2C7359;
-        }
-
-        /* Footer Styling */
         footer {
-            background: #174031d2;
-            /* Consistent with nav style */
+            background: #174031;
             padding: 20px 0;
-            /* Padding for visual spacing */
+            color: #F2F2F2;
+            text-align: center;
         }
 
-        /* Media Query Adjustments */
         @media (min-width: 768px) {
 
-            /* Custom scrollbar hidden */
-            #featured-photos::-webkit-scrollbar {
+            #featured-photos::-webkit-scrollbar,
+            #featured-photos {
                 display: none;
             }
-
-            #featured-photos {
-                -ms-overflow-style: none;
-                scrollbar-width: none;
-            }
-        }
-
-        /* Modal Styling */
-        .modal-content {
-            background-color: transparent;
-            border: none;
-        }
-
-        .modal-dialog {
-            max-width: 95%;
-        }
-
-        #modal-image {
-            max-height: 80vh;
-            max-width: 100%;
-            object-fit: contain;
-        }
-
-        .modal-backdrop.show {
-            opacity: 0.7;
-        }
-
-        .btn-close-white {
-            filter: invert(1);
-            /* Ensure close button is visible */
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1051;
-            font-size: 30px;
-            color: #fff;
-        }
-
-        .title {
-            color: #262626;
         }
     </style>
 </head>
 
 <body>
+    <div class="bg-image"></div>
     <header>
-        <!-- place navbar here -->
-        <nav class="navbar navbar-expand-lg  fixed-top ">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">JRMGraphy</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Gallery</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">JRMGraphy</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="gallery.html">Gallery</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+              </ul>
             </div>
+          </div>
         </nav>
     </header>
     <main class="container py-5">
         <div class="row row-cols-1 row-cols-md-2 g-4">
-            <!-- Adjusted Category Blocks -->
             <div class="col">
                 <div class="card h-100">
                     <a href="retratos.html" class="category-link">
@@ -285,7 +134,6 @@ Colors:
                     </a>
                 </div>
             </div>
-            <!-- Repeat for other categories -->
             <div class="col">
                 <div class="card h-100">
                     <a href="naturaleza.html" class="category-link">
@@ -299,7 +147,6 @@ Colors:
                     </a>
                 </div>
             </div>
-            <!-- And so on for Creatividad and Ciudad -->
             <div class="col">
                 <div class="card h-100">
                     <a href="creatividad.html" class="category-link">
@@ -331,7 +178,7 @@ Colors:
     <footer class="text-center text-white fixed-bottom">
         &copy; JRM Photography 2023 | All rights reserved
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
