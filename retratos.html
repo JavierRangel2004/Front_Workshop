@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - JRMGraphy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+    }
+    .gallery-container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-gap: 15px;
+    }
+    .gallery-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+      transition: transform 0.3s ease;
+    }
+    .gallery-image:hover {
+      transform: scale(1.05);
+    }
+    .nav-links {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    /* Additional styles */
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <!-- Navbar content remains the same as in previous examples -->
+  </header>
+
+  <main class="gallery-container" id="gallery">
+    <!-- Images will be loaded here by the script -->
+  </main>
+
+  <div class="nav-links">
+    <a href="naturaleza.html">← Nature</a>
+    <!-- Adjust the navigation link based on the current gallery -->
+    <a href="creatividad.html">Creativity →</a>
+  </div>
+
+  <footer class="site-footer">
+    <!-- Footer content remains the same as in previous examples -->
+  </footer>
+
+  <script>
+    // Define the image array for the current gallery
+    const images = []; // This array will hold your image paths
+    const gallery = document.getElementById('gallery');
+
+    // Function to load images
+    function loadImages() {
+      images.forEach((src, index) => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Image ${index + 1}`;
+        img.classList.add('gallery-image');
+        
+        // Load image with delay to avoid glitchy loading
+        img.style.display = 'none';
+        img.onload = () => {
+          img.style.display = '';
+        };
+
+        gallery.appendChild(img);
+      });
+    }
+
+    // Execute the function to load images
+    document.addEventListener('DOMContentLoaded', loadImages);
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
