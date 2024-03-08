@@ -53,17 +53,17 @@
             object-fit: cover;
         }
 
-nav {
-  background: #174031be;
-  backdrop-filter: saturate(180%) blur(10px);
+        nav {
+            background: #174031be;
+            backdrop-filter: saturate(180%) blur(10px);
 
-}
+        }
 
-.navbar-brand {
-  font-weight: 700;
-  font-size: 1.5em;
-  color: #F2F2F2;
-}
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5em;
+            color: #F2F2F2;
+        }
 
         .grow-on-hover {
             transition: transform 0.3s ease;
@@ -73,11 +73,67 @@ nav {
             transform: scale(1.05);
         }
 
-        footer {
-            background: #174031;
-            padding: 20px 0;
+        .site-footer {
             color: #F2F2F2;
-            text-align: center;
+            background: #174031;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-footer .footer-brand {
+            display: flex;
+            align-items: center;
+            height: 80px;
+        }
+
+        .site-footer .footer-brand img {
+            max-height: 80px;
+            padding: .5rem;
+            border-radius: 20px;
+        }
+
+        .site-footer .footer-contact-info {
+            text-align: right;
+        }
+
+        .site-footer .footer-contact-info p {
+            margin: 0;
+            /* Remove default margins */
+        }
+
+        .container {
+            margin-bottom: 4rem;
+            /* Add space at the bottom of the content */
+        }
+
+        .footer-contact-info a {
+            color: #F2F2F2;
+            text-decoration: none;
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .footer-contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-contact-info i {
+            font-size: 1.5rem;
+            /* Icon size */
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .instagram-icon {
+            background-image: url('/media/igLogo.png');
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-size: cover;
+            vertical-align: middle;
+            margin-right: 8px;
         }
 
         @media (min-width: 768px) {
@@ -94,29 +150,29 @@ nav {
     <div class="bg-image"></div>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top ">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">JRMGraphy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="gallery.html">Gallery</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-              </ul>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">JRMGraphy</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="gallery.html">Gallery</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </nav>
     </header>
     <main class="container py-5">
@@ -175,8 +231,15 @@ nav {
             </div>
         </div>
     </main>
-    <footer class="text-center text-white fixed-bottom">
-        &copy; JRM Photography 2023 | All rights reserved
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="/media/logo.jpg" alt="JRMGraphy Logo">
+        </div>
+        <div class="footer-contact-info">
+            <a href="mailto:inspecjrm@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i>Email</a>
+            <a href="tel:+525582559042"><i class="fa fa-phone" aria-hidden="true"></i>Phone</a>
+            <a href="https://www.instagram.com/jrm_graphy" target="_blank" class="instagram-icon"></a>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

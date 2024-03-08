@@ -32,11 +32,10 @@ const allImages = {
     loadFeaturedImages("featured-photos", allImages, numPhotos);
     initGalleryLoadMore();
   
-    // Setup for the custom close button
     document.querySelector('.close-btn').addEventListener('click', function() {
       let modalEl = document.getElementById('modal');
-      let modalInstance = bootstrap.Modal.getInstance(modalEl); // Get the modal instance
-      modalInstance.hide(); // Hide the modal
+      let modalInstance = bootstrap.Modal.getInstance(modalEl);
+      modalInstance.hide();
     });
   });
   
@@ -85,9 +84,9 @@ const allImages = {
     img.style.objectFit = "contain";
     img.addEventListener("click", () => {
       const modalImage = document.getElementById('modal-image');
-      modalImage.src = imageSrc; // Set the source of the modal image to the clicked image
+      modalImage.src = imageSrc;
       const modalElement = new bootstrap.Modal(document.getElementById('imageModal'));
-      modalElement.show(); // Show the modal
+      modalElement.show();
     });
   
     container.appendChild(img);
@@ -103,12 +102,9 @@ const allImages = {
         }
   
   document.getElementById('featured-photos').addEventListener('wheel', function(event) {
-    if (event.deltaY != 0) { // If
+    if (event.deltaY != 0) {
         event.preventDefault();
         this.scrollLeft += event.deltaY;
         }
     }
     );
-// Path: myTry/index.html
-// Compare this snippet from BuddyTry/index.html:
-//     <!DOCTYPE html>

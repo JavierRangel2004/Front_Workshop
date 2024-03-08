@@ -62,6 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
       img.setAttribute('data-bs-toggle', 'modal');
       img.setAttribute('data-bs-target', '#modal');
       img.src = image;
+      img.style.opacity = 0; // Set initial opacity to 0
+      
+      // Add the 'loaded' class when the image finishes loading
+      img.onload = () => {
+        img.classList.add('loaded');
+        img.style.opacity = 1; // Set opacity to 1
+      };
+      
       section.appendChild(img);
     });
   }
