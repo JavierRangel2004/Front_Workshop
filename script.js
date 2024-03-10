@@ -51,33 +51,6 @@ function initFeaturedImages() {
   loadFeaturedImages("featured-photos", allImages, numPhotos);
 }
 
-function initGalleryPage() {
-  const currentCategory = determineCurrentCategory();
-  if (currentCategory) {
-    loadImagesWithAnimation(currentCategory, 15);
-    window.addEventListener("load", function () {
-      const galleryImages = document.querySelectorAll(".gallery-image");
-
-      galleryImages.forEach((image) => {
-        // Create an image object to measure the natural size
-        const img = new Image();
-        img.src = image.src;
-
-        img.onload = () => {
-          // Calculate the aspect ratio of the image
-          const aspectRatio = img.naturalHeight / img.naturalWidth;
-          // Based on the aspectRatio, span more rows for taller images
-          const rowSpan = Math.ceil(aspectRatio * 2); // *2 because of the default 2-row span
-          image.style.gridRowEnd = `span ${rowSpan}`;
-        };
-      });
-    });
-
-    loadMoreImages(currentCategory); // Pass the currentCategory as argument
-    initInfiniteScroll();
-  }
-}
-
 function loadFeaturedImages(sectionId, images, numPhotosPerCategory) {
   ["portraits", "landscapes", "city", "creativity"].forEach((category) => {
     const usedImages = [];
@@ -93,6 +66,37 @@ function loadFeaturedImages(sectionId, images, numPhotosPerCategory) {
   });
 }
 
+function initGalleryPage() {
+  const currentCategory = determineCurrentCategory();
+  if (currentCategory) {
+    loadImagesWithAnimation(currentCategory, 15);
+    window.addEventListener("load", function () {
+      function initializeMasonry() {
+        const grid = document.querySelector('.gallery-container');
+        const msnry = new Masonry(grid, {
+          itemSelector: '.img-container',
+          percentPosition: true,
+          columnWidth: '.img-container',
+          gutter: 10
+        });
+      }
+    
+      // Check if Masonry is defined before trying to use it
+      if (typeof Masonry !== 'undefined') {
+        initializeMasonry();
+      } else {
+        console.error('Masonry not loaded');
+      }
+      
+    });
+
+    loadMoreImages(currentCategory); // Pass the currentCategory as argument
+    initInfiniteScroll();
+  }
+}
+
+
+
 function loadMoreImages(category) {
   const start = loadedImages[category];
   const end = start + 4;
@@ -106,28 +110,16 @@ function loadMoreImages(category) {
 function appendImageToSection(sectionId, imageSrc) {
   const section = document.getElementById(sectionId);
   const container = document.createElement("div");
-  container.classList.add("img-container");
-
-  // Create an image element that's already loaded
+  container.classList.add("img-container", "fade-in");
   const img = document.createElement("img");
   img.src = imageSrc;
-  // Start with image invisible for fade-in
   img.style.opacity = 0;
-
-  // Check the sectionId and apply specific classes for each gallery
-  if (sectionId === "portraits") {
-    img.classList.add("gallery-image", "portrait");
-  } else if (sectionId === "city") {
-    img.classList.add("gallery-image", "cityscape");
-  } // Continue with else if for other sections...
-
-  // The common classes for all images
   img.classList.add(
     "img-fluid",
     "rounded",
     "shadow-sm",
     "m-2",
-    "grow-on-hover"
+    "gallery-image"
   );
   img.style.objectFit = "contain";
 
@@ -143,19 +135,7 @@ function appendImageToSection(sectionId, imageSrc) {
 
   container.appendChild(img);
   section.appendChild(container);
-
-  // Instead of fading in here, we fade in after appending to ensure a smooth animation
   fadeInImage(img);
-}
-
-function determineCurrentCategory() {
-  const categories = ["portraits", "landscapes", "city", "creativity"];
-  for (const category of categories) {
-    if (document.getElementById(category)) {
-      return category;
-    }
-  }
-  return null;
 }
 
 function loadImagesWithAnimation(category, count) {
@@ -211,6 +191,16 @@ function initInfiniteScroll() {
       }
     }
   });
+}
+
+function determineCurrentCategory() {
+  const categories = ["portraits", "landscapes", "city", "creativity"];
+  for (const category of categories) {
+    if (document.getElementById(category)) {
+      return category;
+    }
+  }
+  return null;
 }
 
 document.addEventListener("DOMContentLoaded", init);
