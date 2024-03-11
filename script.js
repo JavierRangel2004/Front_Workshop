@@ -121,44 +121,68 @@ function fadeInImage(imgElement) {
 function initGalleryPage() {
   const currentCategory = determineCurrentCategory();
   if (currentCategory) {
-    loadImagesWithAnimation(currentCategory, 20, true); // Initial load with Masonry initialization
+    loadImagesWithAnimation(currentCategory, 10, true); // Initial load with Masonry initialization
     initInfiniteScroll(currentCategory);
   }
 }
 
-function loadImagesWithAnimation(category, count, initializeMasonry = false) {
+function loadImagesWithAnimation(category, count, initializeMasonry = true) { // Default to true for initial Masonry initialization
   if (galleryLoading || loadedImages[category] >= allImages[category].length)
-    return;
+    return; // if already loading or no more images to load
 
   galleryLoading = true;
+
+  // Initialize Masonry layout before loading images if required
+  if (initializeMasonry && !msnry) {
+    initializeMasonryLayout(category);
+  }
+
   const end = Math.min(
     loadedImages[category] + count,
     allImages[category].length
-  );
+  ); // Determine how many images to load
+
+  const imageLoadPromises = []; // To track when each image has loaded
 
   for (let i = loadedImages[category]; i < end; i++) {
     const imageSrc = allImages[category][i];
     const img = new Image();
-    img.onload = () => {
-      appendImageToSection(category, img.src);
-      if (i === end - 1) {
-        galleryLoading = false;
-        if (initializeMasonry) initializeMasonryLayout(category);
-        else if (msnry) msnry.layout();
-      }
-    };
+
+    // Create a promise for each image load
+    const imgPromise = new Promise((resolve) => {
+      img.onload = () => {
+        appendImageToSection(category, img.src);
+        if (msnry) {
+          msnry.appended(img); // Add the image to Masonry layout
+          msnry.layout(); // Layout Masonry after each image is appended
+        }
+        resolve(); // Resolve the promise when the image is loaded
+      };
+    });
+    
     img.src = imageSrc;
+    imageLoadPromises.push(imgPromise); // Add the promise to track loading
   }
-  loadedImages[category] += count;
+
+  // After all images have started loading, update the loaded images count and resolve gallery loading state
+  Promise.all(imageLoadPromises).then(() => {
+    loadedImages[category] += count;
+    galleryLoading = false;
+  });
 }
 
 function initializeMasonryLayout(category) {
-  const grid = document.querySelector(`#${category}`);
-  msnry = new Masonry(grid, {
-    itemSelector: ".img-container",
-    percentPosition: true,
-  });
+  // Ensure the grid element exists and hasn't been initialized yet
+  const grid = document.querySelector(`#${category}.grid`);
+  if (grid && !msnry) { // Check if msnry is not already initialized to prevent reinitialization
+    msnry = new Masonry(grid, {
+      itemSelector: '.img-container',
+      percentPosition: true,
+      columnWidth: '.grid-sizer',
+    });
+  }
 }
+
 
 function initInfiniteScroll(currentCategory) {
   let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
