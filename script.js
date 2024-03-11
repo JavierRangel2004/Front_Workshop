@@ -121,7 +121,7 @@ function fadeInImage(imgElement) {
 function initGalleryPage() {
   const currentCategory = determineCurrentCategory();
   if (currentCategory) {
-    loadImagesWithAnimation(currentCategory, 5, true); // Initial load with Masonry initialization
+    loadImagesWithAnimation(currentCategory, 20, true); // Initial load with Masonry initialization
     initInfiniteScroll(currentCategory);
   }
 }
