@@ -2,26 +2,26 @@ document.addEventListener("DOMContentLoaded", init);
 
 const allImages = {
   portraits: [],
-  landscapes: [],
+  nature: [],
   city: [],
   creativity: [],
 };
 
 // Populate image arrays
-["portraits", "landscapes", "city", "creativity"].forEach((category) => {
+["portraits", "nature", "city", "creativity"].forEach((category) => {
   let limit;
   switch (category) {
     case "portraits":
-      limit = 70;
+      limit = 80;
       break;
-    case "landscapes":
-      limit = 50;
+    case "nature":
+      limit = 58;
       break;
     case "city":
-      limit = 30;
+      limit = 39;
       break;
     case "creativity":
-      limit = 22;
+      limit = 45;
       break;
   }
   for (let i = 1; i <= limit; i++) {
@@ -31,7 +31,7 @@ const allImages = {
 
 const loadedImages = {
   portraits: 0,
-  landscapes: 0,
+  nature: 0,
   city: 0,
   creativity: 0,
 };
@@ -40,9 +40,15 @@ let galleryLoading = false;
 let msnry; // Masonry instance
 
 function init() {
+  console.log("Script loaded!");
   if (document.getElementById("featured-photos")) {
     initFeaturedImages();
     handleHorizontalScroll("featured-photos");
+  }
+  if (document.getElementById("form")) {
+    contactFormSubmit();
+    //add error message in console "Loading contact form..."
+    console.log("Loading contact form...");
   } else {
     initGalleryPage();
   }
@@ -60,12 +66,12 @@ function handleHorizontalScroll(elementId) {
 }
 
 function initFeaturedImages() {
-  const numPhotos = { portraits: 3, landscapes: 3, city: 3, creativity: 3 };
+  const numPhotos = { portraits: 3, nature: 3, city: 3, creativity: 3 };
   loadFeaturedImages("featured-photos", allImages, numPhotos);
 }
 
 function loadFeaturedImages(sectionId, images, numPhotosPerCategory) {
-  ["portraits", "landscapes", "city", "creativity"].forEach((category) => {
+  ["portraits", "nature", "city", "creativity"].forEach((category) => {
     const usedImages = [];
     for (let i = 0; i < numPhotosPerCategory[category]; i++) {
       let randomIndex;
@@ -80,7 +86,7 @@ function loadFeaturedImages(sectionId, images, numPhotosPerCategory) {
 }
 
 function determineCurrentCategory() {
-  const categories = ["portraits", "landscapes", "city", "creativity"];
+  const categories = ["portraits", "nature", "city", "creativity"];
   return (
     categories.find((category) => document.getElementById(category)) || null
   );
@@ -205,3 +211,54 @@ function initInfiniteScroll(currentCategory) {
     false
   );
 }
+
+function contactFormSubmit() {
+  document.getElementById('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+  
+    // Data validation
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+  
+    if (name === '') {
+      alert('Please enter your name.');
+      return;
+    }
+  
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+  
+    if (message === '') {
+      alert('Please enter a message.');
+      return;
+    }
+  
+    // Send data using Fetch API
+    fetch('https://script.google.com/macros/s/AKfycbxPUxuIUanbvIPtkfz53iYKlQJdzNksDRfWZpfN7_S_yeA9yaYYIltFd8IsBXYX4KUg/exec', {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: new URLSearchParams({
+    "name": name,
+    "email": email,
+    "message": message
+  })
+})
+    
+
+    .then(response => response.text())
+    .then(text => {
+      if (text === 'Success!') {
+        alert('Thank you for contacting us, have an excellent day!!');
+      } else {
+        alert('An error occurred. Please try again later.');
+      }
+    })
+    .catch(error => console.error(error));
+  });
+}
+  
