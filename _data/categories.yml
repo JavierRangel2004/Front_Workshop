@@ -1,0 +1,35 @@
+- name: "portraits"
+  title: "Portraits"
+  description: "Capturing personal expressions."
+  prefix: "portraits"
+  start: 1
+  count: 70
+  images:
+    - "portraits (1).webp"
+
+- name: "nature"
+  title: "Nature"
+  description: "Landscapes and natural beauty."
+  prefix: "nature"
+  start: 1
+  count: 58
+  images:
+    - "nature (1).webp"
+
+- name: "city"
+  title: "City"
+  description: "Urban landscapes and architecture."
+  prefix: "city"
+  start: 1
+  count: 39
+  images:
+    - "city (1).webp"
+
+- name: "creativity"
+  title: "Creativity"
+  description: "Artistic experiments."
+  prefix: "creativity"
+  start: 1
+  count: 45
+  images:
+    - "creativity (1).webp"
