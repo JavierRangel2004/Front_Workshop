@@ -3,26 +3,33 @@ document.addEventListener("DOMContentLoaded", function() {
   
   const categories = window.categories || [];
   
-  // Convert categories to have a generated image list
   categories.forEach(cat => {
     cat.images = generateImageList(cat.prefix, cat.start, cat.count);
   });
 
-  // HOME PAGE
   const featuredPhotos = document.getElementById('featured-photos');
   if (featuredPhotos && categories.length > 0) {
     initFeaturedImages(categories, featuredPhotos);
     handleHorizontalScroll('featured-photos');
     addCarouselArrows(featuredPhotos.parentElement, featuredPhotos);
+
+    // Category filter for homepage carousel
+    const categoryFilter = document.getElementById('categoryFilter');
+    if (categoryFilter) {
+      categoryFilter.addEventListener('change', () => {
+        const selected = categoryFilter.value;
+        featuredPhotos.innerHTML = '';
+        // If 'all' is selected, 5 images each category, else 15 images of the selected category
+        loadFeaturedImages(featuredPhotos, categories, selected);
+      });
+    }
   }
 
-  // CATEGORY PAGE
   const bodyCategory = document.body.getAttribute('data-category');
   if (bodyCategory) {
     initInfiniteGallery(bodyCategory, categories);
   }
 
-  // CONTACT FORM
   if (document.getElementById('form')) {
     contactFormSubmit();
   }
@@ -31,12 +38,11 @@ document.addEventListener("DOMContentLoaded", function() {
 function generateImageList(prefix, start, count) {
   let arr = [];
   for (let i = start; i <= count; i++) {
-    arr.push(`${prefix} (${i}).webp`);
+    arr.push(`${prefix} (${i}).webp`);    
   }
   return arr;
 }
 
-// From the old working code: handleHorizontalScroll
 function handleHorizontalScroll(elementId) {
   const el = document.getElementById(elementId);
   el.addEventListener("wheel", function (event) {
@@ -47,43 +53,54 @@ function handleHorizontalScroll(elementId) {
   });
 }
 
-// Initialize featured images (5 random images per category, total 20 images max)
+// Initialize featured images with default "all" view
 function initFeaturedImages(categories, container) {
+  loadFeaturedImages(container, categories, 'all');
+}
+
+function loadFeaturedImages(container, categories, filter) {
   container.innerHTML = '';
-  const numPhotos = { portraits: 3, nature: 3, city: 3, creativity: 3 }; 
-  // user asked for 5 images per category previously, let's increase to 5 each:
-  numPhotos.portraits = 5; 
-  numPhotos.nature = 5;
-  numPhotos.city = 5;
-  numPhotos.creativity = 5;
-
-  loadFeaturedImages(container, categories, numPhotos);
-}
-
-// loadFeaturedImages with fade-in on each image
-function loadFeaturedImages(container, categories, numPhotosPerCategory) {
-  ["portraits", "nature", "city", "creativity"].forEach(category => {
-    const cat = categories.find(c => c.name === category);
-    if (!cat) return;
-    if (!cat.images || cat.images.length === 0) return;
-
-    const usedImages = [];
-    for (let i = 0; i < numPhotosPerCategory[category]; i++) {
-      let randomIndex;
-      do {
-        randomIndex = Math.floor(Math.random() * cat.images.length);
-      } while (usedImages.includes(randomIndex));
-      usedImages.push(randomIndex);
-      const imageSrc = `/assets/images/${category}/${cat.images[randomIndex]}`;
-      appendImageToCarousel(container, imageSrc);
+  const categoryOrder = ["portraits", "nature", "product", "concert"];
+  
+  if (filter === 'all') {
+    // Show 5 images per category
+    categoryOrder.forEach(category => {
+      const cat = categories.find(c => c.name === category);
+      if (!cat || !cat.images.length) return;
+      const usedImages = pickRandomImages(cat.images, 5);
+      usedImages.forEach(idx => {
+        const imageSrc = `/assets/images/${category}/${cat.images[idx]}`;
+        appendImageToCarousel(container, imageSrc, category);
+      });
+    });
+  } else {
+    // Show 15 images from the selected category
+    const cat = categories.find(c => c.name === filter);
+    if (cat && cat.images.length) {
+      const usedImages = pickRandomImages(cat.images, 15);
+      usedImages.forEach(idx => {
+        const imageSrc = `/assets/images/${filter}/${cat.images[idx]}`;
+        appendImageToCarousel(container, imageSrc, filter);
+      });
     }
-  });
+  }
 }
 
-// append images to carousel with fade-in
-function appendImageToCarousel(container, src) {
+function pickRandomImages(imageArray, count) {
+  const usedImages = [];
+  const maxImages = Math.min(count, imageArray.length);
+  while (usedImages.length < maxImages) {
+    let randomIndex = Math.floor(Math.random() * imageArray.length);
+    if (!usedImages.includes(randomIndex)) {
+      usedImages.push(randomIndex);
+    }
+  }
+  return usedImages;
+}
+
+function appendImageToCarousel(container, src, category) {
   const imgContainer = document.createElement('div');
-  imgContainer.className = 'img-container';
+  imgContainer.className = 'img-container position-relative';
   const img = document.createElement('img');
   img.src = src;
   img.className = 'gallery-image';
@@ -91,13 +108,19 @@ function appendImageToCarousel(container, src) {
   img.style.objectFit = 'cover';
   img.addEventListener('click', () => openModal(src));
   img.onload = () => {
-    imgContainer.classList.add('loaded'); // triggers fade-in
+    imgContainer.classList.add('loaded');
   };
-  container.appendChild(imgContainer);
+
+  // Add category label overlay
+  const label = document.createElement('div');
+  label.className = 'category-label';
+  label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+
   imgContainer.appendChild(img);
+  imgContainer.appendChild(label);
+  container.appendChild(imgContainer);
 }
 
-// Add arrows to carousel
 function addCarouselArrows(wrapper, container) {
   const leftArrow = document.createElement('div');
   leftArrow.className = 'carousel-arrow left';
@@ -118,7 +141,6 @@ function addCarouselArrows(wrapper, container) {
   });
 }
 
-// Initialize infinite gallery loading
 function initInfiniteGallery(categoryName, categories) {
   const cat = categories.find(c => c.name === categoryName);
   if (!cat) return;
@@ -145,7 +167,7 @@ function initInfiniteGallery(categoryName, categories) {
       img.style.objectFit = 'cover';
       img.addEventListener('click', () => openModal(imgSrc));
       img.onload = () => {
-        imgContainer.classList.add('loaded'); // fade-in on load
+        imgContainer.classList.add('loaded');
       };
       imgContainer.appendChild(img);
       galleryContainer.appendChild(imgContainer);
@@ -155,7 +177,6 @@ function initInfiniteGallery(categoryName, categories) {
 
   loadBatch();
 
-  // On scroll load more
   window.addEventListener('scroll', () => {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 300) {
       if (startIndex < total) {
@@ -180,6 +201,7 @@ function contactFormSubmit() {
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
+    const inquiryType = document.getElementById('inquiry-type').value;
 
     if (!name) { alert('Please enter your name.'); return; }
     if (!/\S+@\S+\.\S+/.test(email)) { alert('Please enter a valid email.'); return; }
@@ -189,13 +211,13 @@ function contactFormSubmit() {
     fetch(scriptURL, {
       method: "POST",
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({ "name": name, "email": email, "message": message })
+      body: new URLSearchParams({ "name": name, "email": email, "message": message, "type": inquiryType })
     })
     .then(response => response.text())
     .then(text => {
       if (text === 'Success!') {
-        alert('Thank you for contacting us, have an excellent day!!');
         document.getElementById('form').reset();
+        document.getElementById('contact-confirmation').style.display = 'block';
       } else {
         alert('An error occurred. Please try again later.');
       }

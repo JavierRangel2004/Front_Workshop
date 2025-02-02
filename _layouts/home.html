@@ -17,7 +17,21 @@ title: Home
 </section>
 
 <h2 class="text-center my-5">Check out my gallery:</h2>
-<div class="carousel-wrapper position-relative">
+
+<!-- Category Filter Dropdown -->
+<div class="text-center mb-4">
+    <label for="categoryFilter" class="form-label">Filter by Category:</label>
+    <select id="categoryFilter" class="form-select d-inline-block w-auto">
+        <option value="all" selected>All</option>
+        <option value="portraits">Portraits</option>
+        <option value="nature">Nature</option>
+        <option value="concert">Concert</option>
+        <option value="product">Product</option>
+    </select>
+</div>
+
+<!-- Added "home-carousel" class for targeted styling if needed -->
+<div class="carousel-wrapper home-carousel position-relative">
     <div id="featured-photos" class="horizontal-scroll"></div>
 </div>
 

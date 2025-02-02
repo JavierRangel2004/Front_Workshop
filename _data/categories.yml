@@ -16,20 +16,20 @@
   images:
     - "nature (1).webp"
 
-- name: "city"
-  title: "City"
-  description: "Urban landscapes and architecture."
-  prefix: "city"
+- name: "product"
+  title: "Product"
+  description: "Commercial photography."
+  prefix: "product"
   start: 1
   count: 39
   images:
-    - "city (1).webp"
+    - "product (1).webp"
 
-- name: "creativity"
-  title: "Creativity"
-  description: "Artistic experiments."
-  prefix: "creativity"
+- name: "concert"
+  title: "Concert"
+  description: "Live music photography."
+  prefix: "concert"
   start: 1
   count: 45
   images:
-    - "creativity (1).webp"
+    - "concert (1).webp"

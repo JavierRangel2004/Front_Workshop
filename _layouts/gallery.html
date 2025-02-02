@@ -1,7 +1,18 @@
 ---
 layout: default
 ---
+
 <h1>{{ page.title }}</h1>
+
+<!-- Filter UI (non-functional placeholder) -->
+<div class="mb-4">
+  <p>Filter by:</p>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-dark">Recent</button>
+    <button type="button" class="btn btn-outline-dark">Most Popular</button>
+  </div>
+</div>
+
 <div class="row row-cols-1 row-cols-md-2 g-4">
     {% for category in site.data.categories %}
     <div class="col">
